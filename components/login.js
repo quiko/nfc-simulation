@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import { loginUrl, credentials, apiKey } from "../constants";
+import { callApi, login } from "../redux/actions";
 
 function Login({ navigation }) {
-  const [jwt, setJwt] = useState("");
+  const dispatch = useDispatch();
+
   const apiCallParams = {
     method: "POST",
     mode: "no-cors",
@@ -15,24 +18,15 @@ function Login({ navigation }) {
     body: JSON.stringify(credentials),
   };
 
-  const handleClick = () => {
-    fetch(loginUrl, apiCallParams)
-      .then(async (response) => {
-        if (response.status === 201) {
-          let responseJson = await response.json();
-          setJwt(responseJson.data.jwt);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const handlePress = () => {
+    dispatch(callApi(loginUrl, apiCallParams,login))
     navigation.push("Scan");
   };
 
   return (
     <View style={styles.container}>
       <TouchableOpacity>
-        <Text onPress={handleClick}>Login</Text>
+        <Text onPress={handlePress}>Login</Text>
       </TouchableOpacity>
     </View>
   );
