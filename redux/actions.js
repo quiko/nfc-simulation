@@ -1,26 +1,36 @@
 export const LOGIN = "LOGIN";
+export const SCAN = "SCAN";
 
-// action
-export const login = jwt => {
-    return {
-        type: LOGIN,
-        jwt
-      };
-  
+export const login = (jwt) => {
+  return {
+    type: LOGIN,
+    payload: jwt,
+  };
 };
 
-// action creator
+export const scan = (product) => {
+  return {
+    type: SCAN,
+    payload: product,
+  };
+};
+
 export const callApi = (url, Params, action) => {
-    return dispatch =>fetch(url, Params)
+  return (dispatch) =>
+    fetch(url, Params)
       .then(async (response) => {
-        if (response.status === 201) {
+        if (response.status === 201 || response.status === 200) {
           let responseJson = await response.json();
-          dispatch(action(responseJson.data.jwt));
-          console.log("action dispatched", responseJson.data.jwt)
+          responseJson.product ?
+          dispatch(action(responseJson.product))
+          :
+          dispatch(action(responseJson.data.jwt))
         }
       })
       .catch((error) => {
         console.log(error);
       });
+};
 
-}
+
+  

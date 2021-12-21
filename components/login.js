@@ -19,7 +19,7 @@ function Login({ navigation }) {
   };
 
   const handlePress = () => {
-    dispatch(callApi(loginUrl, apiCallParams,login))
+    dispatch(callApi(loginUrl, apiCallParams, login));
     navigation.push("Scan");
   };
 
