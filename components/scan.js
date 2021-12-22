@@ -29,9 +29,13 @@ function Scan({ navigation }) {
   }
   return (
     <View style={styles.container}>
-      <TouchableOpacity>
-        <Text onPress={handlePress}>Scan</Text>
-      </TouchableOpacity>
+      <View style={styles.scanContainer}>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText} onPress={handlePress}>
+            Scan
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
