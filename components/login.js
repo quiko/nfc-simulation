@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import { loginUrl, credentials, apiKey } from "../constants";
 import { callApi, login } from "../redux/actions";
+import { styles } from "../styles/style";
 
 function Login({ navigation }) {
   const dispatch = useDispatch();
@@ -32,13 +33,5 @@ function Login({ navigation }) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
 
 export default Login;

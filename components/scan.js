@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import { scanUrl, shortUrl, apiKey } from "../constants";
 import { callApi, scan } from "../redux/actions";
+import { styles } from "../styles/style";
 
 function Scan({ navigation }) {
   let jwt = useSelector((state) => state);
@@ -35,12 +36,3 @@ function Scan({ navigation }) {
   );
 }
 export default Scan;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
